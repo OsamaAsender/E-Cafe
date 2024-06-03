@@ -78,12 +78,12 @@ namespace OA.ECafe.WebApi.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> EditCategory(int id, CreateUpdateCategoryDto createUpdateCategoryDto)
         {
-            if (id != category.Id)
+            if (id != createUpdateCategoryDto.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(category).State = EntityState.Modified;
+            _context.Entry(createUpdateCategoryDto).State = EntityState.Modified;
 
             try
             {
