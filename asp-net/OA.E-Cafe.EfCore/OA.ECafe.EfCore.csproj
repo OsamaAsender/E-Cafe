@@ -22,8 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OA.E-Cafe.Entities\OA.E-Cafe.Entities.csproj" />
-    <ProjectReference Include="..\OA.E-Cafe.Utils\OA.E-Cafe.Utils.csproj" />
+    <ProjectReference Include="..\OA.E-Cafe.Entities\OA.ECafe.Entities.csproj" />
+    <ProjectReference Include="..\OA.E-Cafe.Utils\OA.ECafe.Utils.csproj" />
   </ItemGroup>
 
 </Project>

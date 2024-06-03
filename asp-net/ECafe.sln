@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OA.E-Cafe.WebApi", "WebApi\OA.E-Cafe.WebApi.csproj", "{E747D6C6-B6CF-41C3-B354-D3FD0457D381}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OA.ECafe.WebApi", "WebApi\OA.ECafe.WebApi.csproj", "{E747D6C6-B6CF-41C3-B354-D3FD0457D381}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OA.E-Cafe.Entities", "OA.E-Cafe.Entities\OA.E-Cafe.Entities.csproj", "{3F648CF2-8B18-4531-BBDF-2D17A2C618E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OA.ECafe.Entities", "OA.E-Cafe.Entities\OA.ECafe.Entities.csproj", "{3F648CF2-8B18-4531-BBDF-2D17A2C618E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OA.E-Cafe.Utils", "OA.E-Cafe.Utils\OA.E-Cafe.Utils.csproj", "{AD56D400-FDE5-4706-876F-CE0B6DBD6012}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OA.ECafe.Utils", "OA.E-Cafe.Utils\OA.ECafe.Utils.csproj", "{AD56D400-FDE5-4706-876F-CE0B6DBD6012}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OA.E-Cafe.EfCore", "OA.E-Cafe.EfCore\OA.E-Cafe.EfCore.csproj", "{29F21B26-1C2F-4F92-9D11-B266977B4D47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OA.ECafe.EfCore", "OA.E-Cafe.EfCore\OA.ECafe.EfCore.csproj", "{29F21B26-1C2F-4F92-9D11-B266977B4D47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OA.E-Cafe.Dtos", "OA.E-Cafe.Dtos\OA.E-Cafe.Dtos.csproj", "{1208739F-D2AE-461D-B867-617152227746}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OA.ECafe.Dtos", "OA.E-Cafe.Dtos\OA.ECafe.Dtos.csproj", "{1208739F-D2AE-461D-B867-617152227746}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

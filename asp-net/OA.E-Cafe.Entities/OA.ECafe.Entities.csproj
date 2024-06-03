@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OA.E-Cafe.Utils\OA.E-Cafe.Utils.csproj" />
+    <ProjectReference Include="..\OA.E-Cafe.Utils\OA.ECafe.Utils.csproj" />
   </ItemGroup>
 
 </Project>
