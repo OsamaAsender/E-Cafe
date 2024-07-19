@@ -1,1 +1,64 @@
-<app-home></app-home>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" [routerLink]="['/home']">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="*">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link" [routerLink]="['/category']"> Category </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="**">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <router-outlet />
+</div>
+
+<section class="Footer">
+  <!-- Footer -->
+  <footer class="text-center text-white" style="background-color: #0a4275">
+    <!-- Grid container -->
+    <div class="container p-4 pb-0">
+      <!-- Section: CTA -->
+      <section class="">
+        <p class="d-flex justify-content-center align-items-center">
+          <span class="me-3">Register for free</span>
+          <button
+            data-mdb-ripple-init
+            type="button"
+            class="btn btn-outline-light btn-rounded"
+          >
+            Sign up!
+          </button>
+        </p>
+      </section>
+      <!-- Section: CTA -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+      © 2020 Copyright:
+      <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+</section>

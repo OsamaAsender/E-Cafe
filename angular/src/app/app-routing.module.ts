@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CategoryComponent } from './category/category.component';
 import { HomeComponent } from './home/home.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -14,18 +15,26 @@ const routes: Routes = [
   },
   {
     path: 'category/create',
-    // component:CategoryComponent
+    component:CategoryComponent
   },
   {
     path: 'category/details/:id',
-    // component:CategoryComponent
-  },  {
-    path: 'category/edit/:id',
-    // component:CategoryComponent
-  },  {
-    path: 'category',
-    // component:CategoryComponent
+    component:CategoryComponent
   },
+  {
+    path: 'category/edit/:id',
+    component:CategoryComponent
+  },
+  {
+    path: '',
+    redirectTo:'/home',
+    pathMatch:'full'
+  },
+  {
+    path: '**',
+    component:PageNotFoundComponent
+  },
+
 ];
 
 @NgModule({
