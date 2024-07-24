@@ -19,14 +19,14 @@
         <td>{{ category.name }}</td>
         <td>{{ category.description }}</td>
         <td>
-            <a [routerLink]="['edit', category.id]">
-                <i class="fa-solid fa-pen-to-square"></i>
+            <a [routerLink]="['edit', category.id]" title="edit">
+                <i class="fa-solid fa-pen-to-square text-success"></i>
             </a>
-            <a [routerLink]="['details']">
-                <i class="fa-solid fa-pen-to-square"></i>
+            <a [routerLink]="['details']" title="details">
+              <i class="fa-solid fa-circle-info ms-2"></i>
             </a>
-            <a [routerLink]="['edit', category.id]">
-                <i class="fa-solid fa-pen-to-square"></i>
+            <a [routerLink]="['delete', category.id]" title="delete">
+                <i class="fa-solid fa-trash ms-2 text-danger"></i>
             </a>
         </td>
       </tr>
