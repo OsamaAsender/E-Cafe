@@ -1,1 +1,35 @@
-<p>category works!</p>
+<div class="m-4">
+  <h1>Categories</h1>
+  <hr />
+  <button mat-flat-button color="primary" [routerLink]="['create']">
+    Create a new Category
+  </button>
+  <hr />
+
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th class="col-md-2">Name</th>
+        <th class="col-md-2">Description</th>
+        <th class="col-md-2">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories">
+        <td>{{ category.name }}</td>
+        <td>{{ category.description }}</td>
+        <td>
+            <a [routerLink]="['edit', category.id]">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <a [routerLink]="['details']">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+            <a [routerLink]="['edit', category.id]">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
