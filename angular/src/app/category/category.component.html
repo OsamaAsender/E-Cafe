@@ -20,9 +20,9 @@
         <td>{{ category.description }}</td>
         <td>
             <a [routerLink]="['edit', category.id]" title="edit">
-                <i class="fa-solid fa-pen-to-square text-success"></i>
+                <i class="fa-solid fa-pen-to-square text-info"></i>
             </a>
-            <a [routerLink]="['details']" title="details">
+            <a [routerLink]="['details', category.id]" title="details">
               <i class="fa-solid fa-circle-info ms-2"></i>
             </a>
             <a [routerLink]="['delete', category.id]" title="delete">

@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatButtonModule} from '@angular/material/button';
 import { CreateUpdateCategoryComponent } from './category/create-update-category/create-update-category.component';
+import { CategoryDetailsComponent } from './category/category-details/category-details.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { CreateUpdateCategoryComponent } from './category/create-update-category
     HomeComponent,
     PageNotFoundComponent,
     CreateUpdateCategoryComponent,
+    CategoryDetailsComponent,
    
   ],
   imports: [

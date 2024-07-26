@@ -4,6 +4,7 @@ import { CategoryComponent } from './category/category.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CreateUpdateCategoryComponent } from './category/create-update-category/create-update-category.component';
+import { CategoryDetailsComponent } from './category/category-details/category-details.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'category/details/:id',
-    component:CategoryComponent
+    component:CategoryDetailsComponent
   },
   {
     path: 'category/edit/:id',
@@ -30,6 +31,10 @@ const routes: Routes = [
     path: '',
     redirectTo:'/home',
     pathMatch:'full'
+  },
+  {
+    path: '**',
+    component:PageNotFoundComponent
   },
 
 ];
