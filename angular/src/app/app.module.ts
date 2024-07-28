@@ -11,7 +11,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import {MatButtonModule} from '@angular/material/button';
 import { CreateUpdateCategoryComponent } from './category/create-update-category/create-update-category.component';
 import { CategoryDetailsComponent } from './category/category-details/category-details.component';
-
+import { MatCardModule } from '@angular/material/card';
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -28,9 +29,12 @@ import { CategoryDetailsComponent } from './category/category-details/category-d
     AppRoutingModule,
     HttpClientModule,
     MatButtonModule,
+    MatCardModule,
+    MatSnackBarModule
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
   ],
   bootstrap: [AppComponent]
 })

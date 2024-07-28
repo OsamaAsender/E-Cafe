@@ -1,0 +1,13 @@
+.example-card {
+    max-width: 400px;
+  }
+  a{
+    text-decoration: none;
+    color:black ;
+  }
+  .example-card{
+    transition: all 0.3s;
+  }
+  .example-card:hover{
+    transform: scale(1.10);
+  }
