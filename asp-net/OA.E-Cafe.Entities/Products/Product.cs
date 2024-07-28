@@ -15,10 +15,9 @@ namespace OA.E_Cafe.Entities.Products
 
         [Column(TypeName = "decimal(4,2)")]
         public decimal Price { get; set; }
-
+        public string ?ImageName { get; set; }
         public int CategoryId { get; set; }
         public required Category Category { get; set; }
-
         public List<OrderProduct> OrderProducts { get; set; }
     }
 }

@@ -31,6 +31,7 @@ namespace OA.ECafe.WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategories()
         {
+
             var categories = await _context
                                            .Categories
                                            .ToListAsync();
