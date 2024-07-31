@@ -12,7 +12,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CategoryComponent implements OnInit {
 
   categories : Category[] = [];
-
+  path : string ='' ;
   constructor(
     private categorySvc : CategoryService,
     private snackBar: MatSnackBar
@@ -30,5 +30,33 @@ export class CategoryComponent implements OnInit {
     });
 
   }
+
+
+  getImageUrl(category : Category) : string {
+    const categoryName = category.name.toLowerCase();
+    let fullPath : string = 'categories/';
+
+    if(categoryName === 'hotdrink'){
+      fullPath += `hotdrinks/${category.imageName}`
+    }
+    else if(categoryName === 'softdrink'){
+      fullPath += `softdrinks/${category.imageName}`
+    }
+    else if(categoryName === 'cheesecakes'){
+      fullPath += `cheesecakes/${category.imageName}`
+    }
+    else if(categoryName === 'milkshake'){
+      fullPath += `milkshakes/${category.imageName}`
+    }
+    else if(categoryName === 'waffle'){
+      fullPath += `waffles/${category.imageName}`
+    }
+    else if(categoryName === 'crepe'){
+      fullPath += `crepes/${category.imageName}`
+    }
+
+    return fullPath;
+  }
+
 
 }
