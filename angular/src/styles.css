@@ -1,7 +1,31 @@
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+   margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color:#FDFAF5;
+   }
 img {
     height: 15rem;
-    
   }
+.btn-bg-color{
+  background-color:#de7e85 ;
+  color:white;
+}
+.btn-bg-color:hover{
+  background-color:#dc9ca1 ;
+  color: #ffffff;
+}
+
+.btn-bg-sec-color{
+  background-color:blanchedalmond ;
+  outline-color: white;
+  color: black;
+}
+.btn-bg-sec-color:hover{
+  background-color:rgb(255, 221, 171);
+  
+}
+.text-color{
+  color: #de7e85;
+}
