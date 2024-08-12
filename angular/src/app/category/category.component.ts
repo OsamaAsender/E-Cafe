@@ -12,7 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class CategoryComponent implements OnInit {
 
   categories : Category[] = [];
-  path : string ='' ;
+  // path : string ='' ;
+  
   constructor(
     private categorySvc : CategoryService,
     private snackBar: MatSnackBar
@@ -25,7 +26,7 @@ export class CategoryComponent implements OnInit {
         this.categories = categoriesfromApi;
       },
       error : (err : HttpErrorResponse) => {
-        this.snackBar.open(err.message , "Ok")
+        this.snackBar.open(err.message)
       }
     });
 

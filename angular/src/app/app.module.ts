@@ -13,6 +13,7 @@ import { CategoryDetailsComponent } from './category/category-details/category-d
 import { MatCardModule } from '@angular/material/card';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     HomeComponent,
     PageNotFoundComponent,
     CategoryDetailsComponent,
+    ProductComponent,
    
   ],
   imports: [

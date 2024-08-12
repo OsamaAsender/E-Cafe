@@ -1,29 +1,42 @@
-<h1> Category <span class="text-color">{{ categoryDetails.name }} </span></h1>
-<hr>
-
-<table class="table table-striped table-hover">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    <span class="text-color">{{ categoryDetails.name }}s </span>
+  </h1>
+  <hr />
+  
+  <table class="table table-striped table-hover">
     <thead>
       <tr>
         <th class="col-md-2">Name</th>
-        <th class="col-md-2">Description</th>
+        <th class="col-md-2">Price</th>
+        <th class="col-md-2">Rating</th>
         <th class="col-md-2">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let category of Categories">
-        <td>{{ category.name }}</td>
-        <td>{{ category.description }}</td>
+      <tr *ngFor="let products of categoryDetails.products">
         <td>
-          <a [routerLink]="['edit', category.id]" title="edit">
-            <i class="fa-solid fa-pen-to-square text-info"></i>
-          </a>
-          <a [routerLink]="['details', category.id]" title="details">
-            <i class="fa-solid fa-circle-info ms-2"></i>
-          </a>
-          <a [routerLink]="['delete', category.id]" title="delete">
-            <i class="fa-solid fa-trash ms-2 text-danger"></i>
-          </a>
+          {{products.name}}
+        </td>
+        <td>
+          {{products.price}}
+        </td>
+        <td>
+          {{products.rating}}
+        </td>
+        <td>
+          <button type="button" class="btn btn-bg-color">Add to Order</button>
         </td>
       </tr>
     </tbody>
   </table>
+  
+</body>
+</html>

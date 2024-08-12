@@ -5,6 +5,8 @@ import { Categorydetails } from '../../models/categories/categorydetails.model';
 import { Category } from '../../models/categories/category.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ProductService } from '../../services/product.service';
+import { Product } from '../../models/products/product.model';
 
 @Component({
   selector: 'app-category-details',
@@ -15,18 +17,16 @@ export class CategoryDetailsComponent implements OnInit {
 
   categoryId !: number ;
   categoryDetails !: Categorydetails;
-  Categories : Category[] = [];
 
  constructor(
   private categorySvc : CategoryService,
   private activatedRoute : ActivatedRoute,
-  private Snackbar : MatSnackBar
+  private Snackbar : MatSnackBar,
 ) { }
 
   ngOnInit(): void {
     this.setCategoryId();
     this.LoadCategoryDetails();
-    this.loadCategories();
   }
 
 
@@ -46,19 +46,22 @@ export class CategoryDetailsComponent implements OnInit {
         this.categoryDetails = categoryDetailsFromApi;
       },
       error : (err : HttpErrorResponse) => {
-        this.Snackbar.open(err.message);
+        this.Snackbar.open(err.message,"Ok");
       }
     })
 
   }
 
-  private loadCategories(): void{
-    this.categorySvc.getCategories().subscribe({
-      next : (categoriesFromApi : Category[]) => {
-        this.Categories = categoriesFromApi;
-      }
-    })
-  }
+  // private LoadCategoryProducts(): void{
+  //   this.productSvc.getProducts().subscribe({
+  //     next : (ProductsFromApi : Product[]) => {
+  //       this.Products = ProductsFromApi;
+  //     } ,
+  //     error : (err : HttpErrorResponse) => {
+  //       this.Snackbar.open(err.message)
+  //     }
+  //   })
+  // }
 
 
 
