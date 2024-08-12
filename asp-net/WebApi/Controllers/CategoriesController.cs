@@ -46,19 +46,19 @@ namespace OA.ECafe.WebApi.Controllers
         public async Task<ActionResult<CategoryDetailsDto>> GetCategory(int id)
         {
             var category = await _context
-                                        .Categories
-                                        .Include(c=> c.Products)
-                                        .Where(c => c.Id == id)
-                                        .SingleOrDefaultAsync();
+                                   .Categories
+                                   .Include(p => p.Products)
+                                   .Where(p => p.Id == id)
+                                   .SingleOrDefaultAsync();
 
             if (category == null)
             {
                 return NotFound();
             }
 
-            var categoryDto = _mapper.Map<CategoryDetailsDto>( category );
+            var categoryDetailsDto = _mapper.Map<CategoryDetailsDto>( category );
 
-            return categoryDto;
+            return categoryDetailsDto;
         }
 
         [HttpGet("{id}")]

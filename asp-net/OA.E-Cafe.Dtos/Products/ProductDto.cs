@@ -16,5 +16,6 @@ namespace OA.E_Cafe.Dtos.Products
 
         [Column(TypeName = "decimal(4,2)")]
         public decimal Price { get; set; }
+        public string CategoryName { get; set; }
     }
 }

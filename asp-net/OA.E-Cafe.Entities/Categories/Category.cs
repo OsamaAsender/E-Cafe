@@ -7,7 +7,6 @@ namespace OA.E_Cafe.Entities.Categories
         public int Id { get; set; }     
         public required string Name { get; set; }
         public required string Description { get; set; }
-        public string ImageName { get; set; }
-        public List<Product> Products { get; set; }
+        public List<Product> Products { get; set; } = [];
     }
 }
