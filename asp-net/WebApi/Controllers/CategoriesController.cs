@@ -35,7 +35,7 @@ namespace OA.ECafe.WebApi.Controllers
             var categories = await _context
                                            .Categories
                                            .ToListAsync();
-
+                                           
             var categoriesDtos = _mapper.Map<List<CategoryDto>>( categories );
 
             return (categoriesDtos);

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
@@ -12,8 +11,13 @@ import {MatButtonModule} from '@angular/material/button';
 import { CategoryDetailsComponent } from './category/category-details/category-details.component';
 import { MatCardModule } from '@angular/material/card';
 import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldModule} from '@angular/material/form-field';
 import { ProductComponent } from './product/product.component';
+import { CreateUpdateProductComponent } from './product/create-update-product/create-update-product.component';
+import {MatInputModule} from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+
+
 
 @NgModule({
   declarations: [
@@ -23,7 +27,7 @@ import { ProductComponent } from './product/product.component';
     PageNotFoundComponent,
     CategoryDetailsComponent,
     ProductComponent,
-   
+    CreateUpdateProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,11 +36,14 @@ import { ProductComponent } from './product/product.component';
     MatButtonModule,
     MatCardModule,
     MatSnackBarModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideAnimationsAsync(),
-    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}
   ],
   bootstrap: [AppComponent]
 })

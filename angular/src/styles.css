@@ -26,6 +26,12 @@ img {
   background-color:rgb(255, 221, 171);
   
 }
+.table-Btn{
+  height: 30px;
+  width : 110px;
+  border-style: none;
+  border-radius: 6px;
+}
 .text-color{
   color: #de7e85;
 }

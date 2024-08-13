@@ -1,31 +1,40 @@
-<h1 class="text-color"> Products <button class="btn btn-bg-color">Add a new Product</button></h1>
-<hr>
-
-<table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th class="col-md-2">Name</th>
-        <th class="col-md-2">Price</th>
-        <th class="col-md-2">Rating</th>
-        <th class="col-md-2">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let oneProduct of products">
-        <td>{{ oneProduct.name }}</td>
-        <td>{{ oneProduct.price }}</td>
-        <td>{{ oneProduct.rating }}</td>
-        <td>
-          <a [routerLink]="['edit', oneProduct.id]" title="edit">
-            <i class="fa-solid fa-pen-to-square text-info"></i>
-          </a>
-          <a [routerLink]="['details', oneProduct.id]" title="details">
-            <i class="fa-solid fa-circle-info ms-2"></i>
-          </a>
-          <a [routerLink]="['delete', oneProduct.id]" title="delete">
-            <i class="fa-solid fa-trash ms-2 text-danger"></i>
-          </a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <h1 class="text-center mb-0 mt-3"> Products </h1>
+  </div>
+  <hr>
+  <button [routerLink]="['create']" class="btn btn-bg-color mb-3">Add new product</button>
+  
+  <table class="table table-striped mb-5">
+      <thead>
+        <tr>
+          <th class="col-md-2">Name</th>
+          <th class="col-md-2">Price</th>
+          <th class="col-md-2">Rating</th>
+          <th class="col-md-2">Details</th>
+          <th class="col-md-2">Order</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let oneProduct of products">
+          <td>{{ oneProduct.name }}</td>
+          <td>{{ oneProduct.price }}</td>
+          <td>{{ oneProduct.rating }}</td>
+            <td>
+              <a [routerLink]="['details']"><i class="fa-solid fa-circle-info"></i></a>
+            </td>
+            <td>
+              <button type="button" class="table-Btn btn-bg-color">Add to Order</button>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+</body>
+</html>

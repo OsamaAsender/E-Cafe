@@ -6,6 +6,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { CategoryDetailsComponent } from './category/category-details/category-details.component';
 import { CreateUpdateCategoryComponent } from './category/create-update-category/create-update-category.component';
 import { ProductComponent } from './product/product.component';
+import { CreateUpdateProductComponent } from './product/create-update-product/create-update-product.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'product',
     component:ProductComponent
+  },
+  {
+    path: 'product/create',
+    component:CreateUpdateProductComponent
   },
   {
     path: '',
