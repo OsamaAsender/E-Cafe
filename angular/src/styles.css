@@ -35,3 +35,6 @@ img {
 .text-color{
   color: #de7e85;
 }
+a:hover{
+  cursor: pointer;
+}
