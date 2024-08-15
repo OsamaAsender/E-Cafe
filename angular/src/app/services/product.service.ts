@@ -4,6 +4,7 @@ import { Product } from '../models/products/product.model';
 import { Observable } from 'rxjs';
 import { CreateUpdateCategoryComponent } from '../category/create-update-category/create-update-category.component';
 import { CreateUpdateProduct } from '../models/products/createupdateproduct.model';
+import { ProductDetails } from '../models/products/productdetails.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class ProductService {
   getProducts() : Observable<Product[]>{
 
     return this.http.get<Product[]>(`${this.ProductApiUrl}/GetProducts`);
+  }
+
+  getProduct(id : number) : Observable<ProductDetails>{
+    return this.http.get<ProductDetails>(`${this.ProductApiUrl}/GetProduct/${id}`)
   }
 
   createProduct(product : CreateUpdateProduct) : Observable<any>{

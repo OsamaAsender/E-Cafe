@@ -7,6 +7,7 @@ import { CategoryDetailsComponent } from './category/category-details/category-d
 import { CreateUpdateCategoryComponent } from './category/create-update-category/create-update-category.component';
 import { ProductComponent } from './product/product.component';
 import { CreateUpdateProductComponent } from './product/create-update-product/create-update-product.component';
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,11 @@ const routes: Routes = [
   {
     path: 'product/create',
     component:CreateUpdateProductComponent
+    
+  },
+  {
+    path: 'product/details/:id',
+    component:ProductDetailsComponent
   },
   {
     path: '',

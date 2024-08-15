@@ -6,8 +6,8 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>
-    <span class="text-color">{{ categoryDetails.name }}s </span>
+  <h1 class="text-center mt-3">
+    <span>{{ categoryDetails.name }}s </span>
   </h1>
   <hr />
   
@@ -17,19 +17,25 @@
         <th class="col-md-2">Name</th>
         <th class="col-md-2">Price</th>
         <th class="col-md-2">Rating</th>
+        <th class="col-md-2">Details</th>
         <th class="col-md-2">Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let products of categoryDetails.products">
+      <tr *ngFor="let product of categoryDetails.products">
         <td>
-          {{products.name}}
+          {{product.name}}
         </td>
         <td>
-          {{products.price}}
+          {{product.price}}
         </td>
         <td>
-          {{products.rating}}
+          {{product.rating}}
+        </td>
+        <td>
+          <a [routerLink]="['/product/details', product.id]" class="ps-3"
+              ><i class="fa-solid fa-circle-info"></i
+            ></a>
         </td>
         <td>
           <button type="submit" class="table-Btn btn-bg-color">Add to Order</button>

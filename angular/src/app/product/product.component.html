@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <div>
-    <h1 class="text-center mb-0 mt-3"> Products </h1>
-  </div>
-  <hr>
-  <button [routerLink]="['create']" class="btn btn-bg-color mb-3">Add new product</button>
-  
-  <table class="table table-striped mb-5">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <h1 class="text-center mb-0 mt-3">Products</h1>
+    </div>
+    <hr />
+    <button [routerLink]="['create']" class="btn btn-bg-color mb-3">
+      Add new product
+    </button>
+
+    <table class="table table-striped mb-5">
       <thead>
         <tr>
-          <th class="col-md-2">Name</th>
-          <th class="col-md-2">Price</th>
-          <th class="col-md-2">Rating</th>
-          <th class="col-md-2">Details</th>
-          <th class="col-md-2">Order</th>
+          <th class="col-md-3">Name</th>
+          <th class="col-md-3">Price</th>
+          <th class="col-md-3">Rating</th>
+          <th class="col-md-3">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -27,14 +28,20 @@
           <td>{{ oneProduct.name }}</td>
           <td>{{ oneProduct.price }}</td>
           <td>{{ oneProduct.rating }}</td>
-            <td>
-              <a [routerLink]="['details']"><i class="fa-solid fa-circle-info"></i></a>
-            </td>
-            <td>
-              <button type="button" class="table-Btn btn-bg-color">Add to Order</button>
-            </td>
+          <td>
+            <a [routerLink]="['details']" class="me-2 text-info"
+              ><i class="fa-solid fa-pen"></i
+            ></a>
+            <a [routerLink]="['details', oneProduct.id]" class="me-2"
+              ><i class="fa-solid fa-circle-info"></i
+            ></a>
+            <a [routerLink]="['details']" class="text-danger"
+              ><i class="fa-solid fa-trash"></i
+            ></a>
+          </td>
         </tr>
+
       </tbody>
     </table>
-</body>
+  </body>
 </html>

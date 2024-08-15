@@ -16,7 +16,8 @@ import { ProductComponent } from './product/product.component';
 import { CreateUpdateProductComponent } from './product/create-update-product/create-update-product.component';
 import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     CategoryDetailsComponent,
     ProductComponent,
     CreateUpdateProductComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatPaginatorModule
   ],
   providers: [
     provideAnimationsAsync(),
