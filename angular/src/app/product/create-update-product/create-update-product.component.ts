@@ -4,6 +4,7 @@ import { ProductService } from '../../services/product.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-create-update-product',
@@ -19,7 +20,8 @@ export class CreateUpdateProductComponent implements OnInit {       //OnInit is 
     private fb : FormBuilder,
     private productSvc : ProductService,
     private router : Router,
-    private snackBar : MatSnackBar
+    private snackBar : MatSnackBar,
+    private spinner : NgxSpinnerService
   ) {}
     
 
@@ -47,8 +49,10 @@ export class CreateUpdateProductComponent implements OnInit {       //OnInit is 
    }
 
    createProduct() : void {
+    this.spinner.show();
     this.productSvc.createProduct(this.form.value).subscribe({
       next:() => {
+        this.spinner.hide();
         this.snackBar.open("You Added A New Product :)",'Ok')
         this.router.navigate(['/product']);
       }

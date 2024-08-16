@@ -3,6 +3,7 @@ import { CategoryService } from '../services/category.service';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Category } from '../models/categories/category.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NgxSpinner, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-category',
@@ -16,11 +17,10 @@ export class CategoryComponent implements OnInit {
   
   constructor(
     private categorySvc : CategoryService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {}
 
   ngOnInit(): void {
-  
     this.categorySvc.getCategories().subscribe({
       next:(categoriesfromApi : Category[]) => {
         this.categories = categoriesfromApi;

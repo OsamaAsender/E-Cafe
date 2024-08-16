@@ -29,8 +29,8 @@
         <td>
           {{product.price}}
         </td>
-        <td>
-          {{product.rating}}
+        <td class="text-center">
+          <star-rating [starType]="'svg'" [rating]="product.rating" [readOnly]="true"></star-rating>
         </td>
         <td>
           <a [routerLink]="['/product/details', product.id]" class="ps-3"

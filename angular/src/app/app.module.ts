@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
 import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatButtonModule} from '@angular/material/button';
 import { CategoryDetailsComponent } from './category/category-details/category-details.component';
@@ -18,6 +18,8 @@ import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { StarRatingModule } from 'angular-star-rating';
 
 
 @NgModule({
@@ -34,16 +36,18 @@ import {MatPaginatorModule} from '@angular/material/paginator';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     MatButtonModule,
     MatCardModule,
     MatSnackBarModule,
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NgxSpinnerModule,
+    StarRatingModule.forRoot()
   ],
   providers: [
+    provideHttpClient(),
     provideAnimationsAsync(),
     {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}},
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'outline'}}

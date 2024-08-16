@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Categorydetails } from '../../models/categories/categorydetails.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-category-details',
@@ -19,6 +20,7 @@ export class CategoryDetailsComponent implements OnInit {
   private categorySvc : CategoryService,
   private activatedRoute : ActivatedRoute,
   private Snackbar : MatSnackBar,
+  private spinner : NgxSpinnerService
 ) { }
 
   ngOnInit(): void {
@@ -37,10 +39,11 @@ export class CategoryDetailsComponent implements OnInit {
   }
 
   private LoadCategoryDetails() : void {
-
+    this.spinner.show();
     this.categorySvc.getCategory(this.categoryId).subscribe({
       next: ( categoryDetailsFromApi : Categorydetails) =>{
         this.categoryDetails = categoryDetailsFromApi;
+        this.spinner.hide();
       },
       error : (err : HttpErrorResponse) => {
         this.Snackbar.open(err.message,"Ok");
