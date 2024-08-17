@@ -6,11 +6,16 @@
     <title>Document</title>
   </head>
   <body>
-
-    <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true">
-     <p style="color: white" > Loading... </p>
+    <ngx-spinner
+      bdColor="rgba(0, 0, 0, 0.8)"
+      size="medium"
+      color="#fff"
+      type="square-jelly-box"
+      [fullScreen]="true"
+    >
+      <p style="color: white">Loading...</p>
     </ngx-spinner>
-    
+
     <div>
       <h1 class="text-center mb-0 mt-3">Products</h1>
     </div>
@@ -22,32 +27,36 @@
     <table class="table table-striped mb-5">
       <thead>
         <tr>
-          <th class="col-md-3">Name</th>
-          <th class="col-md-3">Price</th>
-          <th class="col-md-3">Rating</th>
-          <th class="col-md-3">Actions</th>
+          <th class="col-md-3 text-center">Name</th>
+          <th class="col-md-3 text-center">Price</th>
+          <th class="col-md-3 text-center">Rating</th>
+          <th class="col-md-3 text-center">Actions</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let oneProduct of products">
-          <td>{{ oneProduct.name }}</td>
-          <td>{{ oneProduct.price }}</td>
-          <td class="text-center"><star-rating [starType]="'svg'" [rating]="oneProduct.rating" [readOnly]="true"></star-rating></td>
-          <td>
+        <tr *ngFor="let product of products">
+          <td class="text-center">{{ product.name }}</td>
+          <td class="text-center">{{ product.price }}</td>
+          <td class="text-center">
+            <star-rating
+              [starType]="'svg'"
+              [rating]="product.rating"
+              [readOnly]="true"
+            ></star-rating>
+          </td>
+          <td class="text-center">
             <a [routerLink]="['details']" class="me-2 text-info"
               ><i class="fa-solid fa-pen"></i
             ></a>
-            <a [routerLink]="['details', oneProduct.id]" class="me-2"
+            <a [routerLink]="['details', product.id]" class="me-2"
               ><i class="fa-solid fa-circle-info"></i
             ></a>
-            <a [routerLink]="['details']" class="text-danger"
-              ><i class="fa-solid fa-trash"></i
-            ></a>
+            <a class="text-danger" title="delete" (click)="deleteProduct(product)">
+              <i class="fa-solid fa-trash"></i>
+            </a>
           </td>
         </tr>
-
       </tbody>
     </table>
-
   </body>
 </html>

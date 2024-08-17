@@ -20,6 +20,8 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { StarRatingModule } from 'angular-star-rating';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DeleteProductDialogComponent } from './product/delete-product-dialog/delete-product-dialog.component';
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import { StarRatingModule } from 'angular-star-rating';
     ProductComponent,
     CreateUpdateProductComponent,
     ProductDetailsComponent,
+    DeleteProductDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +47,7 @@ import { StarRatingModule } from 'angular-star-rating';
     ReactiveFormsModule,
     MatPaginatorModule,
     NgxSpinnerModule,
+    MatDialogModule,
     StarRatingModule.forRoot()
   ],
   providers: [
