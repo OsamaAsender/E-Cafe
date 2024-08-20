@@ -1,4 +1,15 @@
-<h1 class="mt-3">Add a new Product</h1>
+
+<h1>
+  <div *ngIf="thePageMode === pageModeEnum.Create; else pageTitleElse">
+    Add a new Product
+  </div>
+</h1>
+
+<ng-template #pageTitleElse>
+  Edit Product
+  <span class ="text-primary">{{product?.name}}</span>
+</ng-template>
+
 <hr />
 <form [formGroup]="form" (ngSubmit)="submit()">
   <div class="row">
@@ -47,8 +58,15 @@
 
   
   <div class="mt-3">
-    <button type="submit" class="btn btn-bg-color me-2">Add</button> 
-     <button type="button" [routerLink]="['/product']" class="btn btn-secondary">cancel</button>
+    <button type="button" [routerLink]="['/product']" class="btn btn-secondary">cancel</button>
+    <button type="submit" class="btn btn-bg-color ms-2">
+      <div *ngIf="thePageMode === pageModeEnum.Create; else submitButtonElse">
+        Create
+      </div>
+      <ng-template #submitButtonElse>
+        Save
+      </ng-template>
+    </button> 
   </div>
 
 </form>

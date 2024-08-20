@@ -36,7 +36,7 @@
       <tbody>
         <tr *ngFor="let product of products">
           <td class="text-center">{{ product.name }}</td>
-          <td class="text-center">{{ product.price }}</td>
+          <td class="text-center">{{ product.price | currency}}</td>
           <td class="text-center">
             <star-rating
               [starType]="'svg'"
@@ -45,7 +45,7 @@
             ></star-rating>
           </td>
           <td class="text-center">
-            <a [routerLink]="['details']" class="me-2 text-info"
+            <a [routerLink]="['edit',product.id]" class="me-2 text-info"
               ><i class="fa-solid fa-pen"></i
             ></a>
             <a [routerLink]="['details', product.id]" class="me-2"

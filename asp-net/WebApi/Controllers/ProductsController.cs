@@ -65,9 +65,7 @@ namespace OA.ECafe.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<CreateUpdateProductDto>> GetProductForEdit(int id)
         {
-            var product = _context
-                                  .Products
-                                  .Find(id);
+            var product = _context.Products.Find(id);
 
             if (product == null)
             {
@@ -88,7 +86,14 @@ namespace OA.ECafe.WebApi.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(CreateUpdateproduct).State = EntityState.Modified;
+           var product = await _context.Products.FindAsync(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(CreateUpdateproduct, product);
 
             try
             {

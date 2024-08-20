@@ -44,6 +44,10 @@ const routes: Routes = [
     component:ProductDetailsComponent
   },
   {
+    path: 'product/edit/:id',
+    component:CreateUpdateProductComponent
+  },
+  {
     path: '',
     redirectTo:'/home',
     pathMatch:'full'
