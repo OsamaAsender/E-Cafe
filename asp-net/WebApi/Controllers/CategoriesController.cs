@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using OA.E_Cafe.Dtos.Categories;
+using OA.E_Cafe.Dtos.Lookups;
 using OA.E_Cafe.EfCore;
 using OA.E_Cafe.Entities.Categories;
 using OA.E_Cafe.Entities.Products;
@@ -18,7 +19,7 @@ namespace OA.ECafe.WebApi.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IMapper _mapper;
 
-        public CategoriesController(ApplicationDbContext context, IMapper mapper ) //am trying to inject the automapper into the controller
+        public CategoriesController(ApplicationDbContext context, IMapper mapper ) //am trying to inject the automapper and the DbContext into the controller
         {
             _context = context;
             _mapper = mapper;
@@ -41,15 +42,23 @@ namespace OA.ECafe.WebApi.Controllers
             return (categoriesDtos);
         }
 
+
         // GET: api/Categories/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CategoryDetailsDto>> GetCategory(int id)
+        public async Task<ActionResult<CategoryDetailsDto>> GetCategory(int id ,bool includeDetails = true)
         {
-            var category = await _context
-                                   .Categories
-                                   .Include(p => p.Products)
-                                   .Where(p => p.Id == id)
-                                   .SingleOrDefaultAsync();
+
+            var query = _context
+                                .Categories
+                                .Where(c => c.Id == id);
+
+            if(includeDetails)
+            {
+                query = query.Include(c => c.Products);
+            }
+
+            var category = await query.SingleOrDefaultAsync();
+
 
             if (category == null)
             {
@@ -60,6 +69,7 @@ namespace OA.ECafe.WebApi.Controllers
 
             return categoryDetailsDto;
         }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<CreateUpdateCategoryDto>> GetCategoryForEdit(int id)
@@ -76,7 +86,8 @@ namespace OA.ECafe.WebApi.Controllers
             return createUpdateCategoryDto;
         }
 
-        [HttpPut("{id}")]
+
+        [HttpPut("{id}")] 
         public async Task<IActionResult> EditCategory(int id, CreateUpdateCategoryDto createUpdateCategoryDto)
         {
             if (id != createUpdateCategoryDto.Id)
@@ -105,6 +116,7 @@ namespace OA.ECafe.WebApi.Controllers
             return NoContent();
         }  // Put = Edit
 
+
         [HttpPost]
         public async Task<ActionResult> CreateCategory(CreateUpdateCategoryDto createUpdateCategoryDto)  // Post = Create
         {
@@ -116,6 +128,7 @@ namespace OA.ECafe.WebApi.Controllers
 
             return Ok();
         }
+
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
@@ -131,6 +144,38 @@ namespace OA.ECafe.WebApi.Controllers
 
             return NoContent();
         }
+
+        [HttpGet]
+        public async Task<IEnumerable<LookupDto>> GetCategoryLookupFromMemory()
+        {
+            var categories = await _context
+                                          .Categories
+                                          .Include(c => c.Products)
+                                          .ToListAsync();
+
+
+
+
+            var categoryLookup = categories
+                                           .Select(c => new LookupDto()
+                                           {
+                                                  id = c.Id,
+                                                  Name = $"{c.Name} - {c.Description}",
+                                           });
+
+            return categoryLookup;
+
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<LookupDto>> GetCategoryLookupFromDB()
+        {
+            var categoryLookups = await _context
+                                               .Categories
+                                               .Select(c => new LookupDto() { id = c.Id, Name = c.Name }).ToListAsync();
+            return categoryLookups;
+        }
+
         #endregion
 
         #region Private Functions
