@@ -22,6 +22,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { StarRatingModule } from 'angular-star-rating';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DeleteProductDialogComponent } from './product/delete-product-dialog/delete-product-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -48,6 +50,8 @@ import { DeleteProductDialogComponent } from './product/delete-product-dialog/de
     MatPaginatorModule,
     NgxSpinnerModule,
     MatDialogModule,
+    MatSelectModule,
+    ToastrModule.forRoot(),
     StarRatingModule.forRoot()
   ],
   providers: [

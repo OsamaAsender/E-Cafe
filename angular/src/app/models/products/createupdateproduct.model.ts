@@ -4,5 +4,5 @@ export interface CreateUpdateProduct {
     description: string ,
     rating : number,
     price : number,
-    categoryId : string
+    categoryId : number
 }

@@ -6,5 +6,4 @@ export interface ProductDetails{
     rating : number,
     price : number,
     categoryName : string
-
 }

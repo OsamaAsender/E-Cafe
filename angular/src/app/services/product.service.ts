@@ -21,6 +21,7 @@ export class ProductService {
   }
 
   getProduct(id : number) : Observable<ProductDetails>{
+    
     return this.http.get<ProductDetails>(`${this.ProductApiUrl}/GetProduct/${id}`)
   }
 
@@ -28,7 +29,7 @@ export class ProductService {
 
     return this.http.get<CreateUpdateProduct>(`${this.ProductApiUrl}/GetProductForEdit/${id}`)
   }
-
+  
   updateProduct( product : CreateUpdateProduct) : Observable<any>{
     return this.http.put(`${this.ProductApiUrl}/EditProduct/${product.id}`, product)
   }

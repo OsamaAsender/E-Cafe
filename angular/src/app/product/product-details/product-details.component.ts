@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { ProductDetails } from '../../models/products/productdetails.model';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -24,15 +24,26 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(): void {
 
     this.setProductId();
-    this.loadProductDetails();
+    
   }
 
 
   //#region Private Funcitons
   private setProductId() : void {
-  if(this.activatedRoute.snapshot.paramMap.get('id')){
-    this.productId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-  }
+    
+  // if(this.activatedRoute.snapshot.paramMap.get('id')){
+  //   this.productId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+  // }
+
+  this.activatedRoute.paramMap.subscribe({
+    next : (paramMap : ParamMap) => {
+      this.productId = Number(paramMap.get('id'));
+      this.loadProductDetails();
+    },
+    error : () => {
+      
+    }
+  })
   }
 
   private loadProductDetails() : void {

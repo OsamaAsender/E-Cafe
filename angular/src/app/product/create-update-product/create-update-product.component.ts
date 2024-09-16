@@ -8,6 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Product } from '../../models/products/product.model';
 import { PageMode } from '../../enums/page-mode.enum';
 import { CreateUpdateProduct } from '../../models/products/createupdateproduct.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-update-product',
@@ -29,7 +30,8 @@ export class CreateUpdateProductComponent implements OnInit {       //OnInit is 
     private router : Router,
     private productSvc : ProductService,
     private snackBar : MatSnackBar,
-    private spinner : NgxSpinnerService
+    private spinner : NgxSpinnerService,
+    private toastr : ToastrService
   ) {}
     
   ngOnInit(): void {
@@ -54,51 +56,53 @@ export class CreateUpdateProductComponent implements OnInit {       //OnInit is 
       }
     }
   }
-  
-  //#region Private Methods
-  
- 
 
+  showSuccess() {
+    this.toastr.success('success');
+  }
+  
+  
+  
   private setProductId() : void{
-
+    
     if(this.activatedRoute.snapshot.paramMap.get('id')){
-
+      
       this.productId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
       this.thePageMode = PageMode.Update;
     }
-   }
-
-   private BuildForm() : void { 
+  }
+  
+  private BuildForm() : void { 
     this.form = this.fb.group({
       id:[0],
       name:['',Validators.required],
       description:['',Validators.required],
       rating:[0,Validators.required],
       price:[0,Validators.required],
-      categoryId:['',Validators.required]
+      categoryId:[0,Validators.required]
     })
-   }
-
-   private loadProduct() : void{
+  }
+  
+  private loadProduct() : void{
     
     this.spinner.show();
-
+    
     this.productSvc.getProductForEdit(this.productId).subscribe({
-
+      
       next:(productFromApi : CreateUpdateProduct) =>{
         this.form.patchValue(productFromApi)
         this.product = productFromApi;
       },
-       error:(err: HttpErrorResponse) => {
+      error:(err: HttpErrorResponse) => {
         this.snackBar.open(err.message)
       },
-       complete: () => {
+      complete: () => {
         this.spinner.hide();
       }
     })
-   }
-
-   createProduct() : void {
+  }
+  
+  createProduct() : void {
     this.spinner.show();
     this.productSvc.createProduct(this.form.value).subscribe({
       next:() => {
@@ -107,22 +111,23 @@ export class CreateUpdateProductComponent implements OnInit {       //OnInit is 
         this.router.navigate(['/product']);
       }
     })
-   }
-
-   private updateProduct() : void {
+  }
+  
+  private updateProduct() : void {
     this.spinner.show();
     this.productSvc.updateProduct(this.form.value).subscribe({
       next:() => {
-
+        
         this.router.navigate(['/product']);
-        this.snackBar.open(`You Updated ${this.product?.name} :)`,'Ok')
+        this.toastr.show(`You Updated ${this.product?.name} :)`,'Ok')
       }, error : (err: HttpErrorResponse) => {
         this.snackBar.open(`ERROR: ${err.message}`, "Ok");
       },
-        complete: () => {
-            this.spinner.hide();
-          }
+      complete: () => {
+        this.spinner.hide();
+      }
     })
-   }
-
+  }
+  
 }
+//#region Private Methods

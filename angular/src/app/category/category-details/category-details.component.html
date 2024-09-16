@@ -16,7 +16,6 @@
       <tr>
         <th class="col-md-2">Name</th>
         <th class="col-md-2">Price</th>
-        <th class="col-md-2">Rating</th>
         <th class="col-md-2">Details</th>
         <th class="col-md-2">Actions</th>
       </tr>
@@ -27,15 +26,7 @@
           {{product.name}}
         </td>
         <td>
-          {{product.price}}
-        </td>
-        <td class="text-center">
-          <star-rating
-            [starType]="'svg'"
-            [rating]="product.rating"
-            [readOnly]="true"
-          ></star-rating>
-        </td>
+          {{product.price | currency}}
         <td>
           <a [routerLink]="['/product/details', product.id]" class="ps-3"
               ><i class="fa-solid fa-circle-info"></i
