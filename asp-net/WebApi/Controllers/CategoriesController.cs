@@ -95,7 +95,15 @@ namespace OA.ECafe.WebApi.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(createUpdateCategoryDto).State = EntityState.Modified;
+            var category = await _context.Categories.FindAsync(id);
+
+
+            if(category == null)
+            {
+                return NotFound();
+            }
+
+             _mapper.Map(createUpdateCategoryDto,category);
 
             try
             {
