@@ -1,4 +1,4 @@
-<div class="m-4">
+<!-- <div class="m-4">
   <h1 class="text-center">Categories</h1>
   <hr />
 
@@ -112,4 +112,60 @@
     
 
  
-</div>
+</div> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ngx-spinner
+      bdColor="rgba(0, 0, 0, 0.8)"
+      size="medium"
+      color="#fff"
+      type="square-jelly-box"
+      [fullScreen]="true"
+    >
+      <p style="color: white">Loading...</p>
+    </ngx-spinner>
+
+    <div>
+      <h1 class="text-center mb-0 mt-3">Products</h1>
+    </div>
+    <hr />
+    <button [routerLink]="['create']" class="btn btn-bg-color mb-3">
+      Add new category
+    </button>
+
+    <table class="table table-striped mb-5">
+      <thead>
+        <tr>
+          <th class="col-md-3 text-center">Name</th>
+          <th class="col-md-3 text-center">Price</th>
+          <th class="col-md-3 text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let category of categories">
+          <td class="text-center">{{ category.name }}</td>
+          <td class="text-center">{{ category.description}}</td>
+          <td class="text-center">
+            <a [routerLink]="['edit',category.id]" class="me-2 text-info"
+              ><i class="fa-solid fa-pen"></i
+            ></a>
+            <a [routerLink]="['details', category.id]" class="me-2 text-primary"
+              ><i class="fa-solid fa-circle-info"></i
+            ></a>
+            <a class="text-danger" title="delete" (click)="deleteCategory(category)">
+              <i class="fa-solid fa-trash"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+

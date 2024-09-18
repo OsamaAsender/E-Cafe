@@ -102,7 +102,7 @@ export class CreateUpdateProductComponent implements OnInit {       //OnInit is 
     })
   }
   
-  createProduct() : void {
+  private createProduct() : void {
     this.spinner.show();
     this.productSvc.createProduct(this.form.value).subscribe({
       next:() => {

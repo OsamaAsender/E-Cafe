@@ -5,6 +5,8 @@ import { Categorydetails } from '../../models/categories/categorydetails.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteCategoryDialogComponent } from '../delete-category-dialog/delete-category-dialog.component';
 
 @Component({
   selector: 'app-category-details',
@@ -20,7 +22,8 @@ export class CategoryDetailsComponent implements OnInit {
   private categorySvc : CategoryService,
   private activatedRoute : ActivatedRoute,
   private Snackbar : MatSnackBar,
-  private spinner : NgxSpinnerService
+  private spinner : NgxSpinnerService,
+  private dialog : MatDialog
 ) { }
 
   ngOnInit(): void {
@@ -51,5 +54,4 @@ export class CategoryDetailsComponent implements OnInit {
     })
 
   }
-
 }

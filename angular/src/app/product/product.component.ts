@@ -20,7 +20,6 @@ export class ProductComponent implements OnInit {
     private productSvc: ProductService,
     private snackBar: MatSnackBar,
     private spinner : NgxSpinnerService,
-    dialog : MatDialog,
   ) {}
 
   ngOnInit(): void {

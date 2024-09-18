@@ -24,19 +24,23 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DeleteProductDialogComponent } from './product/delete-product-dialog/delete-product-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
+import { DeleteCategoryDialogComponent } from './category/delete-category-dialog/delete-category-dialog.component';
+import { CreateUpdateCategoryComponent } from './category/create-update-category/create-update-category.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CategoryComponent,
     HomeComponent,
     PageNotFoundComponent,
+    CategoryComponent,
+    CreateUpdateCategoryComponent,
     CategoryDetailsComponent,
     ProductComponent,
     CreateUpdateProductComponent,
     ProductDetailsComponent,
     DeleteProductDialogComponent,
+    DeleteCategoryDialogComponent,
   ],
   imports: [
     BrowserModule,

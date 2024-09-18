@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Category } from '../models/categories/category.model';
 import { Categorydetails } from '../models/categories/categorydetails.model';
+import { CreateUpdateCategory } from '../models/categories/createupdatecategory.model';
 
 @Injectable({
   providedIn: 'root',
@@ -22,5 +23,20 @@ export class CategoryService {
 
     return this.http.get<Categorydetails>(`${this.CategoryApiUrl}/GetCategory/${id}`)
   }
-  
+
+  getCategoryForEdit(id : number) : Observable<CreateUpdateCategory>{
+    return this.http.get<CreateUpdateCategory>(`${this.CategoryApiUrl}/GetCategoryForEdit/${id}`)
+  }
+
+  createCategory(category : CreateUpdateCategory) : Observable<any>{
+    return this.http.post(`${this.CategoryApiUrl}/createCategory`, category)
+  }
+
+  updateCategory(category : CreateUpdateCategory) : Observable<any>{
+    return this.http.put(`${this.CategoryApiUrl}/EditCategory/${category.id}`,category)
+  }
+
+  deleteCategory(id : number) : Observable<any> { 
+    return this.http.delete(`${this.CategoryApiUrl}/DeleteCategory/${id}`)
+  }
 }
