@@ -25,7 +25,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
    this.getProducts();
   }
-
+  
   //#region Private Functions
   private getProducts() :void {
 

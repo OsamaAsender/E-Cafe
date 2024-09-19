@@ -9,6 +9,8 @@ import { Product } from '../../models/products/product.model';
 import { PageMode } from '../../enums/page-mode.enum';
 import { CreateUpdateProduct } from '../../models/products/createupdateproduct.model';
 import { ToastrService } from 'ngx-toastr';
+import { CategoryService } from '../../services/category.service';
+import { Lookup } from '../../models/Lookup/lookup.model';
 
 @Component({
   selector: 'app-create-update-product',
@@ -20,7 +22,9 @@ export class CreateUpdateProductComponent implements OnInit {       //OnInit is 
   
   thePageMode : PageMode = PageMode.Create;
   pageModeEnum = PageMode;
-  
+
+  categoryLookup : Lookup[] = [];
+
   productId!: number;
   product?: CreateUpdateProduct;
 
@@ -31,10 +35,12 @@ export class CreateUpdateProductComponent implements OnInit {       //OnInit is 
     private productSvc : ProductService,
     private snackBar : MatSnackBar,
     private spinner : NgxSpinnerService,
-    private toastr : ToastrService
+    private toastr : ToastrService,
+    private categorySvc: CategoryService
   ) {}
     
   ngOnInit(): void {
+    this.loadCategoryLookup();
     this.setProductId();
     this.BuildForm();
 
@@ -61,7 +67,19 @@ export class CreateUpdateProductComponent implements OnInit {       //OnInit is 
     this.toastr.success('success');
   }
   
-  
+  private loadCategoryLookup() : void { 
+    this.spinner.show();
+    this.categorySvc.getCategoryLookup().subscribe({
+      next : (categoryLookupFromApi : Lookup[]) => {
+        this.categoryLookup = categoryLookupFromApi;
+      }, error : (err: HttpErrorResponse) => {
+        this.snackBar.open(`ERROR: ${err.message}`, "Ok");
+      },
+      complete: () => {
+        this.spinner.hide();
+      }
+    })
+  }
   
   private setProductId() : void{
     

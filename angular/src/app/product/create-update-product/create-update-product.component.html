@@ -55,15 +55,11 @@
   
   <div class="col-md-6">
     <mat-form-field appearance="outline" class="w-100">
-      <mat-label>CategoryId</mat-label>
-      <!-- <input formControlName="categoryId" matInput  /> -->
+      <mat-label>Category</mat-label>
       <mat-select formControlName="categoryId">
-        <mat-option [value]="2">Hotdrinks</mat-option>
-        <mat-option [value]="3">Softdrinks</mat-option>
-        <mat-option [value]="4">CheeseCake</mat-option>
-        <mat-option [value]="5">MilkShake</mat-option>
-        <mat-option [value]="1002">Waffles</mat-option>
-        <mat-option [value]="1003">Crepes</mat-option>
+        @for(category of categoryLookup; track category){
+          <mat-option [value]="category.id">{{category.name}}</mat-option>
+        }
     </mat-select>
       <mat-error>this field is required</mat-error>
     </mat-form-field>
