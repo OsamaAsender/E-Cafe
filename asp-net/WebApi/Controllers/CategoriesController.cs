@@ -154,7 +154,7 @@ namespace OA.ECafe.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<LookupDto>> GetCategoryLookupFromMemory()
+        public async Task<IEnumerable<LookupDto>> GetCategoryLookup()
         {
             var categories = await _context
                                           .Categories
