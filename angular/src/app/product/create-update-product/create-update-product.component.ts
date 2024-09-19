@@ -63,10 +63,12 @@ export class CreateUpdateProductComponent implements OnInit {       //OnInit is 
     }
   }
 
-  showSuccess() {
-    this.toastr.success('success');
-  }
+  //#region Private Methods
   
+  get priceControl(){
+    return this.form.controls["price"];
+  }
+
   private loadCategoryLookup() : void { 
     this.spinner.show();
     this.categorySvc.getCategoryLookup().subscribe({
@@ -95,8 +97,8 @@ export class CreateUpdateProductComponent implements OnInit {       //OnInit is 
       id:[0],
       name:['',Validators.required],
       description:['',Validators.required],
-      rating:[0,Validators.required],
-      price:[0,Validators.required],
+      rating:[0],
+      price:['',[Validators.required,Validators.max(99.9)]],
       categoryId:[0,Validators.required]
     })
   }
@@ -146,6 +148,7 @@ export class CreateUpdateProductComponent implements OnInit {       //OnInit is 
       }
     })
   }
-  
+
+
+  //#endregion
 }
-//#region Private Methods

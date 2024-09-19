@@ -20,19 +20,6 @@
 <div class="row mt-3">
     <div class="col-md-2"><span class="fw-bold">Price :</span></div>
 <div class="col-md-4">
-  {{ productDetails.price }}
+  {{ productDetails.price | currency }}
 </div>
-  </div>
-
-  <div class="row mt-3">
-    <div class="col-md-2"><span class="fw-bold">Rating :</span></div>
-    <div class="col-md-4">
-      <div class="text-center">
-        <star-rating
-          [starType]="'svg'"
-          [rating]="productDetails.rating"
-          [readOnly]="true"
-        ></star-rating>
-      </div>
-    </div>
   </div>
