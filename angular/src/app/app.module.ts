@@ -26,6 +26,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ToastrModule } from 'ngx-toastr';
 import { DeleteCategoryDialogComponent } from './category/delete-category-dialog/delete-category-dialog.component';
 import { CreateUpdateCategoryComponent } from './category/create-update-category/create-update-category.component';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { CreateUpdateCategoryComponent } from './category/create-update-category
     NgxSpinnerModule,
     MatDialogModule,
     MatSelectModule,
+    MatTableModule,
     ToastrModule.forRoot(),
     StarRatingModule.forRoot()
   ],

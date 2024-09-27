@@ -83,7 +83,8 @@ export class CreateUpdateCategoryComponent implements OnInit {
        this.category = categoriesFromApi
      },
      error : (err: HttpErrorResponse) => {
-       this.snackBar.open(err.message)
+       this.snackBar.open(err.message);
+       this.spinner.hide();
      },
      complete: () => {
        this.spinner.hide();

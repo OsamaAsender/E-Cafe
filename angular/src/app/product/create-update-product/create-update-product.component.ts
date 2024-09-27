@@ -76,6 +76,7 @@ export class CreateUpdateProductComponent implements OnInit {       //OnInit is 
         this.categoryLookup = categoryLookupFromApi;
       }, error : (err: HttpErrorResponse) => {
         this.snackBar.open(`ERROR: ${err.message}`, "Ok");
+        this.spinner.hide();
       },
       complete: () => {
         this.spinner.hide();

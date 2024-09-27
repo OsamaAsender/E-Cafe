@@ -133,7 +133,7 @@
     </ngx-spinner>
 
     <div>
-      <h1 class="text-center mb-0 mt-3">Products</h1>
+      <h1 class="text-center mb-0 mt-3">Categories</h1>
     </div>
     <hr />
     <button [routerLink]="['create']" class="btn btn-bg-color mb-3">
@@ -151,21 +151,26 @@
       <tbody>
         <tr *ngFor="let category of categories">
           <td class="text-center">{{ category.name }}</td>
-          <td class="text-center">{{ category.description}}</td>
+          <td class="text-center">{{ category.description }}</td>
           <td class="text-center">
-            <a [routerLink]="['edit',category.id]" class="me-2 text-info"
+            <a [routerLink]="['edit', category.id]" class="me-2 text-info"
               ><i class="fa-solid fa-pen"></i
             ></a>
             <a [routerLink]="['details', category.id]" class="me-2 text-primary"
               ><i class="fa-solid fa-circle-info"></i
             ></a>
-            <a class="text-danger" title="delete" (click)="deleteCategory(category)">
+            <a
+              class="text-danger"
+              title="delete"
+              (click)="deleteCategory(category)"
+            >
               <i class="fa-solid fa-trash"></i>
             </a>
           </td>
         </tr>
       </tbody>
     </table>
+
+    
   </body>
 </html>
-

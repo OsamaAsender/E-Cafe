@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { CreateUpdateCategoryComponent } from '../category/create-update-category/create-update-category.component';
 import { CreateUpdateProduct } from '../models/products/createupdateproduct.model';
 import { ProductDetails } from '../models/products/productdetails.model';
+import { PagedList } from '../models/pagers/pagedlist.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,11 @@ export class ProductService {
   getProducts() : Observable<Product[]>{
 
     return this.http.get<Product[]>(`${this.ProductApiUrl}/GetProducts`);
+  }
+
+  getPagedProducts( pageIndex : number, pageSize :number ) : Observable<PagedList<Product>>{
+
+    return this.http.get<PagedList<Product>>(`${this.ProductApiUrl}/GetPagedProducts?pageSize=${pageSize}&pageIndex=${pageIndex}`);
   }
 
   getProduct(id : number) : Observable<ProductDetails>{

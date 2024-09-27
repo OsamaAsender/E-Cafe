@@ -50,6 +50,7 @@ export class CategoryDetailsComponent implements OnInit {
       },
       error : (err : HttpErrorResponse) => {
         this.Snackbar.open(err.message,"Ok");
+        this.spinner.hide();
       }
     })
 
