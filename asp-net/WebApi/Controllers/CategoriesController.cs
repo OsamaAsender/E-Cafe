@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 using OA.E_Cafe.Dtos.Categories;
 using OA.E_Cafe.Dtos.Lookups;
+using OA.E_Cafe.Dtos.Pages;
+using OA.E_Cafe.Dtos.Products;
 using OA.E_Cafe.EfCore;
 using OA.E_Cafe.Entities.Categories;
-using OA.E_Cafe.Entities.Products;
 
 namespace OA.ECafe.WebApi.Controllers
 {
@@ -28,7 +28,6 @@ namespace OA.ECafe.WebApi.Controllers
         #endregion
 
         #region Actions
-        // GET: api/Categories
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategoryDto>>> GetCategories()
         {
@@ -36,10 +35,32 @@ namespace OA.ECafe.WebApi.Controllers
             var categories = await _context
                                            .Categories
                                            .ToListAsync();
-                                           
-            var categoriesDtos = _mapper.Map<List<CategoryDto>>( categories );
+
+            var categoriesDtos = _mapper.Map<List<CategoryDto>>(categories);
 
             return (categoriesDtos);
+        }
+
+        // GET: api/Categories
+        [HttpGet]
+        public async Task<ActionResult<PagedListDto<CategoryDto>>> GetPagedCategories([FromQuery] ListInputDto listInputDto)
+        {
+
+            var categories = await _context.Categories
+                                       .Skip(listInputDto.PageSize * listInputDto.PageIndex)
+                                       .Take(listInputDto.PageSize)
+                                       .ToListAsync();
+
+
+            var CategoriesDto = _mapper.Map<List<CategoryDto>>(categories);
+
+            var pagedListDto = new PagedListDto<CategoryDto>();
+
+            pagedListDto.Items = _mapper.Map<List<CategoryDto>>(categories);
+
+            pagedListDto.TotalItems = await _context.Categories.CountAsync();
+
+            return pagedListDto;
         }
 
 
