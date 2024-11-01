@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteProductDialogComponent } from './delete-product-dialog/delete-product-dialog.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { PagedList } from '../models/pagers/pagedlist.model';
+import { PagedList } from '../models/pagers/pagedList.model';
 import { tap } from 'rxjs';
 
 @Component({

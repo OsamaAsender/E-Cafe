@@ -7,6 +7,7 @@ using OA.E_Cafe.Dtos.Pages;
 using OA.E_Cafe.Dtos.Products;
 using OA.E_Cafe.EfCore;
 using OA.E_Cafe.Entities.Categories;
+using OA.E_Cafe.Entities.Products;
 
 namespace OA.ECafe.WebApi.Controllers
 {
@@ -46,21 +47,22 @@ namespace OA.ECafe.WebApi.Controllers
         public async Task<ActionResult<PagedListDto<CategoryDto>>> GetPagedCategories([FromQuery] ListInputDto listInputDto)
         {
 
-            var categories = await _context.Categories
-                                       .Skip(listInputDto.PageSize * listInputDto.PageIndex)
-                                       .Take(listInputDto.PageSize)
-                                       .ToListAsync();
+            var Categories = await _context
+                                            .Categories
+                                            .Skip(listInputDto.PageSize * listInputDto.PageIndex)
+                                            .Take(listInputDto.PageSize)
+                                            .ToListAsync();
 
 
-            var CategoriesDto = _mapper.Map<List<CategoryDto>>(categories);
+            var categoriesDto = _mapper.Map<List<CategoryDto>>(Categories);
 
             var pagedListDto = new PagedListDto<CategoryDto>();
 
-            pagedListDto.Items = _mapper.Map<List<CategoryDto>>(categories);
+            pagedListDto.Items = _mapper.Map<List<CategoryDto>>(Categories);
 
-            pagedListDto.TotalItems = await _context.Categories.CountAsync();
+            pagedListDto.TotalItems = await _context.Products.CountAsync();
 
-            return pagedListDto;
+            return Ok(pagedListDto);
         }
 
 

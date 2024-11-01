@@ -2,10 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Product } from '../models/products/product.model';
 import { Observable } from 'rxjs';
-import { CreateUpdateCategoryComponent } from '../category/create-update-category/create-update-category.component';
 import { CreateUpdateProduct } from '../models/products/createupdateproduct.model';
 import { ProductDetails } from '../models/products/productdetails.model';
-import { PagedList } from '../models/pagers/pagedlist.model';
+import { PagedList } from '../models/pagers/pagedList.model';
 
 @Injectable({
   providedIn: 'root'
