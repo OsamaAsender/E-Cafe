@@ -60,7 +60,7 @@ namespace OA.ECafe.WebApi.Controllers
 
             pagedListDto.Items = _mapper.Map<List<CategoryDto>>(Categories);
 
-            pagedListDto.TotalItems = await _context.Products.CountAsync();
+            pagedListDto.TotalItems = await _context.Categories.CountAsync();
 
             return Ok(pagedListDto);
         }
