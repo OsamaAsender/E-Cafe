@@ -38,7 +38,7 @@ export class CategoryComponent implements OnInit , AfterViewInit {
 
   
   ngOnInit(): void {
-    this.loadCategories(0, 5);
+    this.loadCategories(5, 0);
   }
   
   ngAfterViewInit(): void {
@@ -49,7 +49,7 @@ export class CategoryComponent implements OnInit , AfterViewInit {
 
   private setUpPager() {
     this.paginator.page.pipe(
-      tap( () => this.loadCategories(this.paginator.pageIndex, this.paginator.pageSize))
+      tap( () => this.loadCategories(this.paginator.pageSize, this.paginator.pageIndex))
     ).subscribe();
   }
 
@@ -57,7 +57,7 @@ export class CategoryComponent implements OnInit , AfterViewInit {
   private loadCategories( pageSize: number , pageIndex : number) :void {
 
     this.spinner.show();
-    this.categorySvc.getPagedCategories(pageIndex, pageSize).subscribe({
+    this.categorySvc.getPagedCategories( pageSize, pageIndex).subscribe({
       next:(PagedcategoriesfromApi : PagedList<Category>) => {
 
         this.dataSource.data = PagedcategoriesfromApi.items;
