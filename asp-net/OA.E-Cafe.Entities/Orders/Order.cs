@@ -11,7 +11,6 @@ namespace OA.E_Cafe.Entities.Orders
 
         public OrderStatus OrderStatus { get; set; } = OrderStatus.Pending;
         public Boolean OrderModified { get; set; } = false;
-        public CheckoutType CheckoutType { get; set; }
 
         [Column(TypeName = "decimal(4,2)")]
         public decimal TotalPrice { get; set; }
