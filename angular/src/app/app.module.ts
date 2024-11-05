@@ -27,6 +27,11 @@ import { ToastrModule } from 'ngx-toastr';
 import { DeleteCategoryDialogComponent } from './category/delete-category-dialog/delete-category-dialog.component';
 import { CreateUpdateCategoryComponent } from './category/create-update-category/create-update-category.component';
 import {MatTableModule} from '@angular/material/table';
+import { CustomerComponent } from './customer/customer.component';
+import { CreateUpdateCustomerComponent } from './customer/create-update-customer/create-update-customer.component';
+import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
+import { DeleteCustomerDialogComponent } from './customer/delete-customer-dialog/delete-customer-dialog.component';
+
 
 
 @NgModule({
@@ -42,6 +47,10 @@ import {MatTableModule} from '@angular/material/table';
     ProductDetailsComponent,
     DeleteProductDialogComponent,
     DeleteCategoryDialogComponent,
+    CustomerComponent,
+    CustomerDetailsComponent,
+    CreateUpdateCustomerComponent,
+    DeleteCustomerDialogComponent,
   ],
   imports: [
     BrowserModule,

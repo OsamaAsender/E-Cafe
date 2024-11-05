@@ -8,6 +8,9 @@ import { CreateUpdateCategoryComponent } from './category/create-update-category
 import { ProductComponent } from './product/product.component';
 import { CreateUpdateProductComponent } from './product/create-update-product/create-update-product.component';
 import { ProductDetailsComponent } from './product/product-details/product-details.component';
+import { CustomerComponent } from './customer/customer.component';
+import { CreateUpdateCustomerComponent } from './customer/create-update-customer/create-update-customer.component';
+import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 
 const routes: Routes = [
   {
@@ -46,6 +49,22 @@ const routes: Routes = [
   {
     path: 'product/edit/:id',
     component:CreateUpdateProductComponent
+  },
+  {
+    path: 'customer',
+    component:CustomerComponent
+  },
+  {
+    path: 'customer/create',
+    component:CreateUpdateCustomerComponent
+  },
+  {
+    path: 'customer/details/:id',
+    component:CustomerDetailsComponent
+  },
+  {
+    path: 'customer/edit/:id',
+    component:CreateUpdateCustomerComponent
   },
   {
     path: '',
