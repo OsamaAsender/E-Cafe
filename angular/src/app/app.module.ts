@@ -31,6 +31,10 @@ import { CustomerComponent } from './customer/customer.component';
 import { CreateUpdateCustomerComponent } from './customer/create-update-customer/create-update-customer.component';
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
 import { DeleteCustomerDialogComponent } from './customer/delete-customer-dialog/delete-customer-dialog.component';
+import { OrderComponent } from './order/order.component';
+import { OrderDetailsComponent } from './order/order-details/order-details.component';
+import { CreateUpdateOrderComponent } from './order/create-update-order/create-update-order.component';
+import { DeleteOrderDialogComponent } from './order/delete-order-dialog/delete-order-dialog.component';
 
 
 
@@ -51,6 +55,10 @@ import { DeleteCustomerDialogComponent } from './customer/delete-customer-dialog
     CustomerDetailsComponent,
     CreateUpdateCustomerComponent,
     DeleteCustomerDialogComponent,
+    OrderComponent,
+    OrderDetailsComponent,
+    CreateUpdateOrderComponent,
+    DeleteOrderDialogComponent,
   ],
   imports: [
     BrowserModule,

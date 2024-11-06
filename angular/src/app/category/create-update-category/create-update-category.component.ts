@@ -50,7 +50,7 @@ export class CreateUpdateCategoryComponent implements OnInit {
       }
       else
       {
-        this.updateProduct();
+        this.updateCategory();
       }
     }
   }
@@ -92,7 +92,7 @@ export class CreateUpdateCategoryComponent implements OnInit {
     })
    }
 
-  private updateProduct() {
+  private updateCategory() {
     this.spinner.show();
     this.categorySvc.updateCategory(this.form.value).subscribe({
       next:() => {

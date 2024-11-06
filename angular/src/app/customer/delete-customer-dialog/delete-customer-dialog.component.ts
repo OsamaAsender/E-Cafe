@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DeleteCategoryDialogComponent } from '../../category/delete-category-dialog/delete-category-dialog.component';
 import { Customer } from '../../models/customers/customer.model';
 
 @Component({
@@ -11,8 +10,9 @@ import { Customer } from '../../models/customers/customer.model';
 export class DeleteCustomerDialogComponent {
 
   constructor(
+    dialogRef: MatDialogRef<DeleteCustomerDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public customer: Customer
-  ) { }
+  ){}
 
   
 }

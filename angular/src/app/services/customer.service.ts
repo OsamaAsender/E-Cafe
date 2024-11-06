@@ -19,19 +19,19 @@ export class CustomerService {
   }
 
   getCustomer(id : number) : Observable<CustomerDetails>{
-    return this.http.get<Customer>(`${this.customerApiUrl}/GetCustomer/${id}`)
+    return this.http.get<CustomerDetails>(`${this.customerApiUrl}/GetCustomer/${id}`)
   }
   
   getCustomerForEdit(id : number) : Observable<CreateUpdateCustomer>{
-    return this.http.get<CreateUpdateCustomer>(`${this.customerApiUrl}/GetCustomer/${id}`)
+    return this.http.get<CreateUpdateCustomer>(`${this.customerApiUrl}/GetCustomerForEdit/${id}`)
   }
   
   createCustomer (customer : CreateUpdateCustomer) : Observable<any>{
     return this.http.post<CreateUpdateCustomer>(`${this.customerApiUrl}/CreateCustomer`,customer)
   } 
   
-  editCustomer (id: number ,customer : CreateUpdateCustomer) : Observable<any>{
-    return this.http.put<CreateUpdateCustomer>(`${this.customerApiUrl}/EditCustomer/${id}`,customer)
+  editCustomer (customer : CreateUpdateCustomer) : Observable<any>{
+    return this.http.put<CreateUpdateCustomer>(`${this.customerApiUrl}/EditCustomer/${customer.id}`,customer)
   } 
 
   deleteCustomer(id : number) : Observable<any> { 
