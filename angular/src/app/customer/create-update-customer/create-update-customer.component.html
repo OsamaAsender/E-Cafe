@@ -5,8 +5,8 @@
   </h1>
   
   <ng-template #pageTitleElse>
-    Edit Customer
-    <span class ="text-primary">{{customer?.fullName}}</span>
+    Edit
+    <span class ="text-primary">{{customer?.firstName}} {{customer?.lastName}}</span>
   </ng-template>
   
   <hr />
@@ -15,8 +15,16 @@
     
       <div class="col-md-6">
         <mat-form-field appearance="outline" class="w-100">
-          <mat-label>FullName</mat-label>
-          <input formControlName="fullName" matInput />
+          <mat-label>FirstName</mat-label>
+          <input formControlName="firstName" matInput />
+          <mat-error>this field is required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-md-6">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>LastName</mat-label>
+          <input formControlName="lastName" matInput />
           <mat-error>this field is required</mat-error>
         </mat-form-field>
       </div>
@@ -33,8 +41,10 @@
     <div class="col-md-6">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Gender</mat-label>
-        <input formControlName="gender" matInput  />
-        <mat-error>this field is required</mat-error>
+        <mat-select formControlName="gender">
+        <mat-option [value]="0">Male</mat-option>
+        <mat-option [value]="1">Female</mat-option>
+        </mat-select>
       </mat-form-field>
   </div>
 </div>

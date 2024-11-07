@@ -65,7 +65,7 @@ namespace OA.ECafe.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<CreateUpdateCategoryDto>> GetCustomerForEdit(int id)
+        public async Task<ActionResult<CreateUpdateCustomerDto>> GetCustomerForEdit(int id)
         {
             var customer = await _context
                                          .Customers
@@ -77,7 +77,7 @@ namespace OA.ECafe.WebApi.Controllers
                 return NotFound();
             }
 
-            var createUpdateCustomerDto = _mapper.Map<CreateUpdateCategoryDto>(customer);
+            var createUpdateCustomerDto = _mapper.Map<CreateUpdateCustomerDto>(customer);
 
             return createUpdateCustomerDto;
         }

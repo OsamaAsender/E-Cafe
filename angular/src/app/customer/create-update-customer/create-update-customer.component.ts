@@ -6,7 +6,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { CategoryService } from '../../services/category.service';
 import { CustomerService } from '../../services/customer.service';
 import { Customer } from '../../models/customers/customer.model';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -44,7 +43,7 @@ export class CreateUpdateCustomerComponent {
     this.BuildFrom();
 
     if(this.thePageMode === PageMode.Update){
-      this.loadCustomer();
+      this.loadCustomers();
     }
   }
   
@@ -52,13 +51,15 @@ export class CreateUpdateCustomerComponent {
     if(this.thePageMode == this.pageModeEnum.Create){
       this.createCustomer();
     }else{
-      this.updateCustomer();
+      this.editCustomer();
     }
   }
  
  
   
   //#region private Methods
+
+  
   private setCustomerId() {
     if(this.activatedRoute.snapshot.paramMap.get('id')){
       this.customerId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
@@ -69,13 +70,14 @@ export class CreateUpdateCustomerComponent {
   private BuildFrom() : void {
     this.form = this.fb.group({
       id:[0],
-      fullName:['', Validators.required],
+      firstName:['', Validators.required],
+      lastName:['', Validators.required],
       phoneNumber:['',Validators.required],
       gender:['',Validators.required],
     })
   }
 
-  private loadCustomer() {
+  private loadCustomers() {
     this.spinner.show();
     this.customerSvc.getCustomerForEdit(this.customerId).subscribe({
       next: ( customerFromApi : CreateUpdateCustomer) => {
@@ -92,9 +94,9 @@ export class CreateUpdateCustomerComponent {
     })
   }
 
-  private updateCustomer() { 
+  private editCustomer() { 
     this.spinner.show();
-    this.customerSvc.editCustomer(this.form.value).subscribe({
+    this.customerSvc.editCustomer(this.customerId, this.form.value).subscribe({
       next:() => {
         this.router.navigate(['/customer']);
       },
@@ -103,6 +105,8 @@ export class CreateUpdateCustomerComponent {
       },
       complete : () => {
         this.spinner.hide();
+        this.router.navigate(['/customer'])
+        this.loadCustomers();
       }
     })
 

@@ -3,7 +3,8 @@ import { Gender } from "../../enums/gender.enum";
 export interface CreateUpdateCustomer {
 
     id : number ,
-    fullName: string,
+    firstName: string,
+    lastName: string,
     phoneNumber: string,
     gender : Gender
 
