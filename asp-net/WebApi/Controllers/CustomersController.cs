@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OA.E_Cafe.Dtos.Categories;
 using OA.E_Cafe.Dtos.Customers;
+using OA.E_Cafe.Dtos.Lookups;
 using OA.E_Cafe.EfCore;
 using OA.E_Cafe.Entities.Customers;
 
@@ -43,6 +44,20 @@ namespace OA.ECafe.WebApi.Controllers
             var CustomersDto = _mapper.Map<List<CustomerDto>>(Customer);
 
             return Ok(CustomersDto);
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<LookupDto>> GetCustomerLookup()
+        {
+            var customerLookups = await _context
+                                               .Customers
+                                               .Select(customer => new LookupDto()
+                                               {
+                                                   id = customer.Id,
+                                                   Name = customer.FullName
+                                               })
+                                               .ToListAsync();
+            return customerLookups;
         }
 
         [HttpGet("{id}")]

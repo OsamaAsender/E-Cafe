@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OA.E_Cafe.Dtos.Lookups;
 using OA.E_Cafe.Dtos.Pages;
 using OA.E_Cafe.Dtos.Products;
 using OA.E_Cafe.EfCore;
@@ -165,6 +166,40 @@ namespace OA.ECafe.WebApi.Controllers
             return NoContent();
         }
 
+
+        //[HttpGet]
+        //public async Task<IEnumerable<LookupDto>> GetProductLookup()
+        //{
+        //    var products = await _context
+        //                                  .Products
+        //                                  .ToListAsync();
+
+
+
+
+        //    var productLookup = products
+        //                               .Select(c => new LookupDto()
+        //                                   {
+        //                                       id = c.Id,
+        //                                       Name = $"{c.Name}",
+        //                                   });
+
+        //    return productLookup;
+
+        //}
+
+        [HttpGet]
+        public async Task<IEnumerable<LookupDto>> GetProductLookup()
+        {
+            var productLookups = await _context
+                                               .Products
+                                               .Select(product => new LookupDto() { 
+                                                   id = product.Id,
+                                                   Name = product.Name
+                                               })
+                                               .ToListAsync();
+            return productLookups;
+        }
 
         #endregion
 

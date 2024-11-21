@@ -176,34 +176,38 @@ namespace OA.ECafe.WebApi.Controllers
             return NoContent();
         }
 
-        [HttpGet]
-        public async Task<IEnumerable<LookupDto>> GetCategoryLookup()
-        {
-            var categories = await _context
-                                          .Categories
-                                          .Include(c => c.Products)
-                                          .ToListAsync();
+        //[HttpGet]
+        //public async Task<IEnumerable<LookupDto>> GetCategoryLookup()
+        //{
+        //    var categories = await _context
+        //                                  .Categories
+        //                                  .Include(c => c.Products)
+        //                                  .ToListAsync();
 
 
 
 
-            var categoryLookup = categories
-                                           .Select(c => new LookupDto()
-                                           {
-                                                  id = c.Id,
-                                                  Name = $"{c.Name} - {c.Description}",
-                                           });
+        //    var categoryLookup = categories
+        //                                   .Select(c => new LookupDto()
+        //                                   {
+        //                                          id = c.Id,
+        //                                          Name = $"{c.Name} - {c.Description}",
+        //                                   });
 
-            return categoryLookup;
+        //    return categoryLookup;
 
-        }
+        //}
 
         [HttpGet]
         public async Task<IEnumerable<LookupDto>> GetCategoryLookupFromDB()
         {
             var categoryLookups = await _context
                                                .Categories
-                                               .Select(c => new LookupDto() { id = c.Id, Name = c.Name }).ToListAsync();
+                                               .Select(category => new LookupDto() {
+                                                   id = category.Id,
+                                                   Name = category.Name
+                                               })
+                                               .ToListAsync();
             return categoryLookups;
         }
 

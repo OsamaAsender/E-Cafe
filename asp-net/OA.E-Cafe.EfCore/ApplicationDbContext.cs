@@ -29,7 +29,7 @@ namespace OA.E_Cafe.EfCore
             modelBuilder.Entity <OrderProduct>()
                 .HasOne(bc => bc.Product)
                 .WithMany(b => b.OrderProducts)
-                .HasForeignKey(bc => bc.ProductId);         
+                .HasForeignKey(bc => bc.ProductId);
         }
     }
 }

@@ -1,51 +1,92 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OA.E_Cafe.Dtos.Orders;
 using OA.E_Cafe.EfCore;
 using OA.E_Cafe.Entities.Orders;
 
 namespace OA.ECafe.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class OrdersController : ControllerBase
     {
+        #region Data and Const
         private readonly ApplicationDbContext _context;
+        private readonly IMapper _mapper;
 
-        public OrdersController(ApplicationDbContext context)
+        public OrdersController(ApplicationDbContext context , IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-        // GET: api/Orders
+        #endregion
+
+        #region Actions
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
+        public async Task<ActionResult<IEnumerable<OrderDto>>> GetOrders()
         {
-            return await _context.Orders.ToListAsync();
+            var orders = await _context
+                                       .Orders
+                                       .Include(o => o.Customer)
+                                       .ToListAsync();
+
+            var ordersDto = _mapper.Map<List<OrderDto>>(orders);
+
+            return (ordersDto); 
         }
 
-        // GET: api/Orders/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Order>> GetOrder(int id)
+        public async Task<ActionResult<OrderDetailsDto>> GetOrder(int id)
         {
-            var order = await _context.Orders.FindAsync(id);
+            var order = await _context.Orders
+                                             .Include(o => o.OrderProducts)
+                                             .ThenInclude(op => op.Product)
+                                             .ThenInclude(p => p.Category)
+                                             .Include(o => o.Customer)
+                                             .Where(o => o.Id == id)
+                                             .SingleOrDefaultAsync();
+
+            
 
             if (order == null)
             {
                 return NotFound();
             }
 
-            return order;
+            var orderDetailsDto = _mapper.Map<OrderDetailsDto>(order);
+
+            return (orderDetailsDto);
         }
 
-        // PUT: api/Orders/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrder(int id, Order order)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CreateUpdateOrderDto>> GetOrderForEdit(int id)
         {
-            if (id != order.Id)
+            var order = await _context
+                                      .Orders     
+                                      .Where(o => o.Id == id)
+                                      .SingleOrDefaultAsync();
+
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            var orderDto = _mapper.Map<CreateUpdateOrderDto>(order);
+
+            return (orderDto);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> EditOrder(int id, CreateUpdateOrderDto createUpdateOrderDto)
+        {
+            if (id != createUpdateOrderDto.Id)
             {
                 return BadRequest();
             }
+
+            var order = _mapper.Map<Order>(createUpdateOrderDto);
 
             _context.Entry(order).State = EntityState.Modified;
 
@@ -68,18 +109,23 @@ namespace OA.ECafe.WebApi.Controllers
             return NoContent();
         }
 
-        // POST: api/Orders
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Order>> PostOrder(Order order)
+        public async Task<ActionResult<CreateUpdateOrderDto>> CreateOrder(CreateUpdateOrderDto createUpdateOrderDto)
         {
+            var order = _mapper.Map<Order>(createUpdateOrderDto);
+
+            order.OrderDate = DateTime.Now;
+
+            order.TotalPrice = GetTotalPrice(order.OrderProducts);
+
             _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetOrder", new { id = order.Id }, order);
+            return Ok();
         }
 
-        // DELETE: api/Orders/5
+       
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteOrder(int id)
         {
@@ -94,10 +140,55 @@ namespace OA.ECafe.WebApi.Controllers
 
             return NoContent();
         }
+        #endregion
 
+        #region Private Functions
         private bool OrderExists(int id)
         {
             return _context.Orders.Any(e => e.Id == id);
         }
+
+        private async Task UpdateOrderProductAsync(int orderId, List<OrderProductDto> orderProductsDtos)
+        {
+            var order = await _context.Orders
+                                              .Include(o => o.OrderProducts)
+                                              .ThenInclude(op => op.Product)
+                                              .Where(o => o.Id == orderId)
+                                              .SingleAsync();
+
+            order.OrderProducts.Clear();
+            
+            var productIds = orderProductsDtos.Select(op => op.ProductId).ToList();
+
+            var products = await _context
+                                   .Products
+                                   .Where(p =>productIds.Contains(p.Id))
+                                   .ToListAsync();
+
+            foreach ( var product in products)
+            {
+                var orderProduct = new OrderProduct()
+                {
+                    Order = order,
+                    Product = product,
+                    Quantity = orderProductsDtos.Where(op => op.ProductId == product.Id).Select(op => op.Quantity).Single()
+                };
+
+                order.OrderProducts.Add(orderProduct);
+            }
+        }
+
+        private decimal GetTotalPrice(List<OrderProduct> orderProducts)
+        {
+            decimal totalPrice = 0;
+
+            foreach (var orderProduct in orderProducts)
+            {
+                totalPrice += orderProduct.Quantity * orderProduct.Product.Price;
+            }
+            return totalPrice;
+        }
+
+        #endregion
     }
 }

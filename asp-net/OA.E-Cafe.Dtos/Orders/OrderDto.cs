@@ -9,10 +9,11 @@ namespace OA.E_Cafe.Dtos.Orders
     {
         public int Id { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.Now;
-        public OrderStatus OrderStatus { get; set; } = OrderStatus.Pending;
+        public string? Note { get; set; }
 
         [Column(TypeName = "decimal(4,2)")]
         public decimal TotalPrice { get; set; }
-        public List<ProductDto> Products { get; set; } = [];
+        public string CustomerFullName { get; set; }
+
     }
 }

@@ -11,7 +11,8 @@ namespace OA.ECafe.WebApi.AutoMapperProfiles
         {
             CreateMap<Order, OrderDto>();
             CreateMap<Order, OrderDetailsDto>();
-            CreateMap<Order, CreateUpdateOrderDto>();
+            CreateMap<Order, CreateUpdateOrderDto>().ReverseMap();
+            CreateMap<OrderProduct, OrderProductDto>().ReverseMap();
         }
     }
 }

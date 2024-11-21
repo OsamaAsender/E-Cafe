@@ -7,9 +7,8 @@ namespace OA.E_Cafe.Dtos.Orders
     public class CreateUpdateOrderDto
     {
         public int Id { get; set; }
-        public DateTime OrderDate { get; set; } = DateTime.Now;
-        public OrderStatus OrderStatus { get; set; } = OrderStatus.Pending;
         public string? Note { get; set; }
-        public List<int> ProductIds { get; set; } = [];
+        public int CustomerId { get; set; }
+        public List<OrderProductDto> OrderProducts { get; set; } = [];
     }
 }
