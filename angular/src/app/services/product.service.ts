@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { CreateUpdateProduct } from '../models/products/createupdateproduct.model';
 import { ProductDetails } from '../models/products/productdetails.model';
 import { PagedList } from '../models/pagers/pagedList.model';
+import { Lookup } from '../models/Lookup/lookup.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,10 @@ export class ProductService {
   getProduct(id : number) : Observable<ProductDetails>{
     
     return this.http.get<ProductDetails>(`${this.ProductApiUrl}/GetProduct/${id}`)
+  }
+
+  getProductLookup() : Observable<Lookup[]>{
+    return this.http.get<Lookup[]>(`${this.ProductApiUrl}/GetProductLookup`);
   }
 
   getProductForEdit(id : number) : Observable<CreateUpdateProduct>{

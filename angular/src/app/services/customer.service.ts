@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Customer } from '../models/customers/customer.model';
 import { CustomerDetails } from '../models/customers/customerDetails.model';
 import { CreateUpdateCustomer } from '../models/customers/createUpdateCustomer.model';
+import { Lookup } from '../models/Lookup/lookup.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,10 @@ export class CustomerService {
   private customerApiUrl : string = 'https://localhost:7045/api/Customers'
 
   constructor(private http : HttpClient) { }
+
+  getCustomerLookup() : Observable<Lookup[]>{
+    return this.http.get<Lookup[]>(`${this.customerApiUrl}/GetCustomerLookup`);
+  }
 
   getCustomers() : Observable<Customer[]> {
     return this.http.get<Customer[]>(`${this.customerApiUrl}/GetCustomers`)

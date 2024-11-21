@@ -11,6 +11,9 @@ import { ProductDetailsComponent } from './product/product-details/product-detai
 import { CustomerComponent } from './customer/customer.component';
 import { CreateUpdateCustomerComponent } from './customer/create-update-customer/create-update-customer.component';
 import { CustomerDetailsComponent } from './customer/customer-details/customer-details.component';
+import { OrderComponent } from './order/order.component';
+import { CreateUpdateOrderComponent } from './order/create-update-order/create-update-order.component';
+import { OrderDetailsComponent } from './order/order-details/order-details.component';
 
 const routes: Routes = [
   {
@@ -65,6 +68,22 @@ const routes: Routes = [
   {
     path: 'customer/edit/:id',
     component:CreateUpdateCustomerComponent
+  },
+  {
+    path: 'order',
+    component:OrderComponent
+  },
+  {
+    path: 'order/create',
+    component:CreateUpdateOrderComponent
+  },
+  {
+    path: 'order/edit/:id',
+    component:CreateUpdateOrderComponent
+  },
+  {
+    path: 'order/details/:id',
+    component:OrderDetailsComponent
   },
   {
     path: '',

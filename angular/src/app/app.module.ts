@@ -35,6 +35,7 @@ import { OrderComponent } from './order/order.component';
 import { OrderDetailsComponent } from './order/order-details/order-details.component';
 import { CreateUpdateOrderComponent } from './order/create-update-order/create-update-order.component';
 import { DeleteOrderDialogComponent } from './order/delete-order-dialog/delete-order-dialog.component';
+import { StarComponent } from './shared/directives/star.component';
 
 
 
@@ -59,6 +60,7 @@ import { DeleteOrderDialogComponent } from './order/delete-order-dialog/delete-o
     OrderDetailsComponent,
     CreateUpdateOrderComponent,
     DeleteOrderDialogComponent,
+    StarComponent,
   ],
   imports: [
     BrowserModule,
