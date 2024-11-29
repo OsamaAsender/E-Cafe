@@ -57,7 +57,7 @@ namespace OA.ECafe.WebApi.Controllers
 
             var orderDetailsDto = _mapper.Map<OrderDetailsDto>(order);
 
-            return (orderDetailsDto);
+            return orderDetailsDto;
         }
 
         [HttpGet("{id}")]
@@ -86,9 +86,24 @@ namespace OA.ECafe.WebApi.Controllers
                 return BadRequest();
             }
 
-            var order = _mapper.Map<Order>(createUpdateOrderDto);
+            var order = await _context
+                                .Orders
+                                .Include(p => p.OrderProducts)
+                                    .ThenInclude(op => op.Product)
+                                .Where(o => o.Id == id)
+                                .SingleOrDefaultAsync();
 
-            _context.Entry(order).State = EntityState.Modified;
+            if (order == null)
+            {
+                return NotFound();
+            }
+
+            _mapper.Map(createUpdateOrderDto, order);
+
+            await UpdateOrderProductAsync(order.Id, createUpdateOrderDto.OrderProducts);
+
+            order.TotalPrice = GetTotalPrice(order.OrderProducts);
+
 
             try
             {
@@ -116,9 +131,14 @@ namespace OA.ECafe.WebApi.Controllers
 
             order.OrderDate = DateTime.Now;
 
+            _context.Orders.Add(order);
+
+            await _context.SaveChangesAsync();
+
+            await UpdateOrderProductAsync(order.Id, createUpdateOrderDto.OrderProducts);
+
             order.TotalPrice = GetTotalPrice(order.OrderProducts);
 
-            _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
             return Ok();
@@ -148,7 +168,7 @@ namespace OA.ECafe.WebApi.Controllers
             return _context.Orders.Any(e => e.Id == id);
         }
 
-        private async Task UpdateOrderProductAsync(int orderId, List<OrderProductDto> orderProductsDtos)
+        private async Task UpdateOrderProductAsync(int orderId, List<CreateUpdateOrderProductDto> orderProductsDtos)
         {
             var order = await _context.Orders
                                               .Include(o => o.OrderProducts)

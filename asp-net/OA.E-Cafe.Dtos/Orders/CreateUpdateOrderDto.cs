@@ -9,6 +9,6 @@ namespace OA.E_Cafe.Dtos.Orders
         public int Id { get; set; }
         public string? Note { get; set; }
         public int CustomerId { get; set; }
-        public List<OrderProductDto> OrderProducts { get; set; } = [];
+        public List<CreateUpdateOrderProductDto> OrderProducts { get; set; } = [];
     }
 }
