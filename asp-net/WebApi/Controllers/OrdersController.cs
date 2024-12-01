@@ -64,7 +64,8 @@ namespace OA.ECafe.WebApi.Controllers
         public async Task<ActionResult<CreateUpdateOrderDto>> GetOrderForEdit(int id)
         {
             var order = await _context
-                                      .Orders     
+                                      .Orders
+                                      .Include(o => o.OrderProducts)
                                       .Where(o => o.Id == id)
                                       .SingleOrDefaultAsync();
 
