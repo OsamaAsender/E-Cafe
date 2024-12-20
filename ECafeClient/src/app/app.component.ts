@@ -17,11 +17,11 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
  this.spinner.show();
- this.toastr.success('Hello world!', 'Toastr fun!');
+
  setTimeout(() => {
   /** spinner ends after 5 seconds */
   this.spinner.hide();
-}, 5000);
+}, 1000);
 
   }
   
