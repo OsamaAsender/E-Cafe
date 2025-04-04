@@ -14,6 +14,8 @@ import { DeleteProductDialogComponent } from './delete-product-dialog/delete-pro
 })
 export class ProductComponent implements OnInit{
 
+  products : Product[] = [];
+  searchKey : string = '';
 
   constructor(
     private productSvc : ProductService,
@@ -28,17 +30,37 @@ export class ProductComponent implements OnInit{
     this.loadProducts();
   }
 
+  getImageUrl(product : Product) : string {
+    const categoryName = product.categoryName.toLowerCase();
+    let fullPath : string = 'products/';
+
+    if (categoryName === 'gpu') {
+
+      fullPath += `gpu/${product.imageName}`
+    }
+    else if (categoryName === 'laptop') {
+
+      fullPath += `laptop/${product.imageName}`
+    }
+    else if (categoryName === 'peripheral') {
+
+      fullPath += `peripheral/${product.imageName}`
+    }
+
+
+    return fullPath;
+  }
+
   loadProducts() : void {
     this.spinner.show();
 
-    this.productSvc.getProducts().subscribe({
+    this.productSvc.getProducts(this.searchKey).subscribe({
       next: (productsFromApi: Product[]) => {
-
-        // this.dataSource.data = ordersFromApi;
+        this.products = productsFromApi;
       },
       error: (err: HttpErrorResponse) => {
 
-        this.toastr.error(`${err.message}`, 'Order');
+        this.toastr.error(`${err.message}`, 'Product');
       },
       complete: () => {
 
@@ -82,6 +104,15 @@ export class ProductComponent implements OnInit{
     });
 
   }
+  searchProducts(): void {
 
+    this.loadProducts();
+  }
+
+  clearSearch(): void {
+
+    this.searchKey = "";
+    this.loadProducts();
+  }
   
 } 

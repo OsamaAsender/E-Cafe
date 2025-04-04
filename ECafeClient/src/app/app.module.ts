@@ -9,12 +9,14 @@ import { ToastrModule } from 'ngx-toastr';
 import { ProductComponent } from './product/product.component';
 import { DeleteProductDialogComponent } from './product/delete-product-dialog/delete-product-dialog.component';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductComponent,
-    DeleteProductDialogComponent
+    DeleteProductDialogComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

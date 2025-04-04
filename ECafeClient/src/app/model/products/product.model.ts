@@ -1,7 +1,10 @@
 export interface Product{
-    id : number,
-    name : string,
-    price : number,
-    rating : number,
-    // categoryName : Category
+    id: number,
+    name: string,
+    barCode: string,
+    rating: number,
+    price: number,
+    categoryName: string,
+    description: string,
+    imageName: string,
 }

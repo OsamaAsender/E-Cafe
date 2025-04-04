@@ -150,7 +150,6 @@ namespace OA.ECafe.WebApi.Controllers
         }
 
 
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
@@ -200,6 +199,17 @@ namespace OA.ECafe.WebApi.Controllers
                                                .ToListAsync();
             return productLookups;
         }
+
+        //public async Task<ActionResult<Product>> AddProduct(CreateUpdateProductDto CreateUpdateproduct)
+        //{
+        //    var product = _mapper.Map<Product>(CreateUpdateproduct);
+
+        //    _context.Products.Add(product);
+
+        //    await _context.SaveChangesAsync();
+
+        //    return Ok();
+        //}
 
         #endregion
 

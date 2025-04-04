@@ -8,7 +8,6 @@ import { Product } from '../model/products/product.model';
   providedIn: 'root'
 })
 export class ProductService {
-  
 
   private productApiUrl = `${environment.apiUrl}Products`
 
